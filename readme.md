@@ -1,9 +1,10 @@
 <h1>Sbancatore Bot</h1>
 <p>Bot di telegram privato botta e risposta, spiegazione sul funzionamento, come personalizzarlo e la personalizzazione standard per i privati interessati.</p>
 
-  * [Introduzione](#introduzione)
-  * [Funzionamento](#funzionamento)
-  * [trigger & answers (tea)](#tea)
+  * [Introduzione](#Introduzione)
+  * [Funzionamento](#Funzionamento)
+  * [Trigger & answers (tea)](#tea)
+  * [Conclusioni](#Conclusioni)
 <br>
 
 ## Introduzione
@@ -88,7 +89,6 @@ Il primo,
 
 dice al bot di mandare il messaggio nella stessa chat dove é stato inviato il messaggio trigger, é ovviamente importante.
 
-#### Random
 Il secondo parametro invece,
 
 ```python
@@ -119,3 +119,79 @@ Si riconduce a questa scelta la linea di codice iniziale
 ```python
 import answers
 ```
+
+### Answers
+
+Se vuoi procedere come ho fatto io, cioé usando un file esterno per tenere gli array con le risposte, crea un file .py (preferibilmente chiamato answers come il mio, cosi da evitare confusione).
+
+La logica e sintassi di questo file é molto semplice:
+
+```python
+array1 = ["risposta1", "risposta2", "risposta3", ecc.]
+```
+
+Non mettere l' ", ecc." ovviamente, era un modo per dire che puoi continuare potenzialmente all'infinito.
+
+### Conclusioni (c'é altro, ma la base é questa)
+Ok, prima di tutto, metti a fine codice:
+```python
+bot.polling()
+```
+
+o puoi scordarti che faccia qualcosa. Praticamente mette il bot in un loop infinito a intervalli di pochi decimi di secondi, serve a fare in modo che stia sempre a controllare le chat.
+
+Detto questo, voglio specificare che puoi aggiungere piu di un trigger per le stesse risposte, basta aggiungere i
+```python
+@bot.message_handler(regexp='pizza')
+```
+tipo cosi:
+```python
+@bot.message_handler(regexp='panino')
+@bot.message_handler(regexp='pizza')
+def funzione1(message):
+  bot.send_message(message.chat.id, random.choice(answers.pizze))
+```
+pure questo potenzialmente all'infinito.
+
+### Comandi base (ecco "l'altro")
+Il bot al momento risponde a messaggi normali, ma potresti volere anche dei comandi base come /help, /start e, nel mio caso, /command.
+
+Il funzionamento é molto simile, cambiano poche cose:
+```python
+@bot.message_handler(commands=['help', "start"])
+def help(message):
+  text = open("help.txt","r")
+  bot.reply_to(message, text.read())
+```
+
+Nel mio caso, per pulizia del codice ho creato un file txt, cioé un testo normale. 
+
+Questo perché la risposta al comando /help (o /start, sono uguali per me) é decisivamente lunga, é inserirla in una variabile sarebbe stato fastidioso.
+
+Questa mia scelta spiega la dichiarazione a inizio codice della variabile text:
+```python
+text = ""
+```
+Questa funzione assegna il contenuto del file help.txt alla variabile text (che puo prendere piu di un valore, essendo che ad ogni assegnazione il valore precedente si resetta. La scelta di una sola variabile é per assurdo) aprendolo in modalita solo lettura (il parametro "r"). 
+
+Dopodiche il bot procede a rispondere al messaggio mandato con:
+```python
+bot.reply_to(message, text.read())
+```
+Tale metodo é diverso a quello precedente:
+```python
+bot.send_message(message.chat.id, random.choice(answers.pizze))
+```
+per semplice scelta personale. Il primo risponde direttamente al messaggio (infatti il primo parametro é message e non piú message.chat.id, che diventa superfluo) invece che scrivere generalmente nella chat.
+
+Il secondo parametro invece é intercambiale e differisce solo per la differenza di salvataggio della risposta, che ho spiegato in precedenza.
+
+E con questo abbiamo finito
+
+## tea
+Per la lista delle risposte e dei trigger (in commenti, modificabili nel file [main](https://github.com/dnmNello/Sbancatorebot/blob/425076c21ceddce6812051ea475f28eb7585405c/main.py)) apri il file [answers](https://github.com/dnmNello/Sbancatorebot/blob/425076c21ceddce6812051ea475f28eb7585405c/answers.py).
+
+## Conclusioni
+Spero che vi sia stato utile, questo é il mio primo progetto serio quindi scusate i possibili vari errori, se avete feedback sono ben accetti. 
+
+Eh niente, é stato divertente, ciao.

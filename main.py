@@ -10,8 +10,8 @@ text = ""
 
 @bot.message_handler(commands=['help', "start"])
 def help(message):
-  text = open("help.txt","r")
-  bot.reply_to(message, text)
+  text = open("help.txt","r") 
+  bot.reply_to(message, text.read())
 
 @bot.message_handler(commands=["commands"])
 def commandsfun(message):
