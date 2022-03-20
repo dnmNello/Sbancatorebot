@@ -4,8 +4,7 @@ import random
 import answers
 
 
-#API_KEY = os.environ['apikey']
-API_KEY = 5283104370:AAFo2wPFjHtV_a5XLjaicencTCCP2QC9QMc
+API_KEY = os.environ['apikey']
 bot = telebot.TeleBot(API_KEY)
 text = ""
 
