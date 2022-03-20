@@ -27,15 +27,14 @@ def pino(message):
 @bot.message_handler(regexp='muori')
 @bot.message_handler(regexp='morite')
 @bot.message_handler(regexp='morte')
-
 def muori(message):
   bot.send_message(message.chat.id, random.choice(answers.muori))
 
 
 @bot.message_handler(regexp='marijuana')
 @bot.message_handler(regexp='droga')
-def tony(message):
-  bot.send_message(message.chat.id, random.choice(answers.droga))
+def droga(message):
+    bot.send_message(message.chat.id, random.choice(answers.droga))
 
 
 @bot.message_handler(regexp='coki')
@@ -46,7 +45,9 @@ def tony(message):
 @bot.message_handler(regexp='ikoc')
 @bot.message_handler(regexp='icok')
 def coki(message):
-  bot.send_message(message.chat.id, random.choice(answers.coki))
+    bot.send_message(message.chat.id, random.choice(answers.coki))
 
 @bot.message_handler(regexp='strunz')
+def coki(message):
+    bot.send_message(message.chat.id,  random.choice(answers.strunz))
 bot.polling()
