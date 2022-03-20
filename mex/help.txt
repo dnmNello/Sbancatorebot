@@ -1,0 +1,4 @@
+Ciao, sono lo sbancatore. 
+Dico cose strane e non me ne prendo la responsabilitá.
+Se hai bisogno del mio codice e della documentazione per creare un bot simile o per modificare questo, vai a https://github.com/dnmNello/Sbancatorebot.
+Se invece vuoi vedere i trigger e le risposte, vai precisamente al paragrafo https://github.com/dnmNello/Sbancatorebot#tea.

@@ -10,14 +10,16 @@ text = ""
 
 @bot.message_handler(commands=['help', "start"])
 def help(message):
-  text = open("help.txt","r") 
+  text = open("/mex/help.txt","r") 
   bot.reply_to(message, text.read())
 
-@bot.message_handler(commands=["commands"])
-def commandsfun(message):
-  text = open("commands.txt","r")
+@bot.message_handler(regexp='ragazza')
+@bot.message_handler(regexp='ragazze')
+@bot.message_handler(regexp='ideale')
+def rgzee(message):
+  text = open("/mex/rgze.txt","r") 
   bot.reply_to(message, text.read())
-
+  
 @bot.message_handler(regexp='discopino')
 @bot.message_handler(regexp='pino')
 def pino(message):
