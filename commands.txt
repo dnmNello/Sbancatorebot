@@ -1,0 +1,3 @@
+Ecco a te i comandi:
+/ciao
+/addio
