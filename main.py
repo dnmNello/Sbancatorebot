@@ -32,10 +32,10 @@ def muori(message):
   bot.send_message(message.chat.id, random.choice(answers.muori))
 
 
-@bot.message_handler(regexp='tony')
+@bot.message_handler(regexp='marijuana')
 @bot.message_handler(regexp='droga')
 def tony(message):
-  bot.send_message(message.chat.id, random.choice(answers.tony))
+  bot.send_message(message.chat.id, random.choice(answers.droga))
 
 
 @bot.message_handler(regexp='coki')
